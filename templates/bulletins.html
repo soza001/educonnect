@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Bulletins Scolaires{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold text-red-600 mb-4">Bulletins Scolaires</h1>
+<p class="text-gray-700">Sélectionnez un élève pour générer son bulletin :</p>
+<form method="GET" action="{% url 'generate_report_card' %}" class="mt-4">
+    <label class="block text-gray-700">ID de l'élève :</label>
+    <input type="text" name="eleve_id" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-red-400">
+    <button type="submit" class="mt-4 w-full bg-red-600 text-white p-2 rounded-lg hover:bg-red-700">
+        Générer Bulletin
+    </button>
+</form>
+{% endblock %}

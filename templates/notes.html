@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Notes des Élèves{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold text-green-600 mb-4">Notes des Élèves</h1>
+<table class="w-full bg-white rounded-xl shadow-lg">
+    <thead class="bg-green-600 text-white">
+        <tr>
+            <th class="p-3">Élève</th>
+            <th class="p-3">Matière</th>
+            <th class="p-3">Note</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for note in notes %}
+        <tr class="border-b">
+            <td class="p-3">{{ note.eleve_id }}</td>
+            <td class="p-3">{{ note.matiere }}</td>
+            <td class="p-3">{{ note.note }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

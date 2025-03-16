@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Tableau de Bord{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-blue-600 mb-6 text-center">Tableau de Bord</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+        <h2 class="text-xl font-bold">Total Élèves</h2>
+        <p class="text-3xl text-blue-600">{{ total_eleves }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+        <h2 class="text-xl font-bold">Total Classes</h2>
+        <p class="text-3xl text-green-600">{{ total_classes }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+        <h2 class="text-xl font-bold">Total Enseignants</h2>
+        <p class="text-3xl text-red-600">{{ total_enseignants }}</p>
+    </div>
+</div>
+
+<div class="mt-8 text-center">
+    <h2 class="text-2xl font-bold text-purple-600 mb-4">Répartition des élèves par classe</h2>
+    <img src="data:image/png;base64,{{ chart }}" class="mx-auto shadow-lg rounded-lg">
+</div>
+{% endblock %}

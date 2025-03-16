@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Ajouter une Note{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold text-green-600 mb-4 text-center">Ajouter une Note</h1>
+
+<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <form method="post" action="{% url 'add_note' %}" id="noteForm">
+        {% csrf_token %}
+
+        <label class="block text-gray-700">ID de l'élève :</label>
+        <input type="text" name="eleve_id" id="eleve_id" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-400">
+        <p id="eleveError" class="text-red-500 text-sm hidden">L'ID de l'élève est obligatoire.</p>
+
+        <label class="block mt-3 text-gray-700">Matière :</label>
+        <input type="text" name="matiere" id="matiere" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-400">
+        <p id="matiereError" class="text-red-500 text-sm hidden">La matière est obligatoire.</p>
+
+        <label class="block mt-3 text-gray-700">Note :</label>
+        <input type="number" step="0.1" name="note" id="note" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-400">
+        <p id="noteError" class="text-red-500 text-sm hidden">La note doit être un nombre valide.</p>
+
+        <button type="submit" class="mt-4 w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700">
+            Ajouter
+        </button>
+    </form>
+</div>
+
+<script>
+document.getElementById("noteForm").addEventListener("submit", function(event) {
+    let valid = true;
+
+    let eleve_id = document.getElementById("eleve_id");
+    let matiere = document.getElementById("matiere");
+    let note = document.getElementById("note");
+
+    if (eleve_id.value.trim() === "") {
+        valid = false;
+        document.getElementById("eleveError").classList.remove("hidden");
+    } else {
+        document.getElementById("eleveError").classList.add("hidden");
+    }
+
+    if (matiere.value.trim() === "") {
+        valid = false;
+        document.getElementById("matiereError").classList.remove("hidden");
+    } else {
+        document.getElementById("matiereError").classList.add("hidden");
+    }
+
+    if (note.value.trim() === "" || isNaN(note.value) || note.value < 0 || note.value > 20) {
+        valid = false;
+        document.getElementById("noteError").classList.remove("hidden");
+    } else {
+        document.getElementById("noteError").classList.add("hidden");
+    }
+
+    if (!valid) {
+        event.preventDefault();
+    }
+});
+</script>
+{% endblock %}

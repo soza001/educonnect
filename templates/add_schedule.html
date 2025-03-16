@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Ajouter un Emploi du Temps{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold text-purple-600 mb-4 text-center">Ajouter un Emploi du Temps</h1>
+
+<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <form method="post" action="{% url 'add_schedule' %}" id="scheduleForm">
+        {% csrf_token %}
+
+        <label class="block text-gray-700">ID de la classe :</label>
+        <input type="text" name="class_id" id="class_id" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-purple-400">
+        <p id="classError" class="text-red-500 text-sm hidden">L'ID de la classe est obligatoire.</p>
+
+        <label class="block mt-3 text-gray-700">Jour :</label>
+        <input type="text" name="day" id="day" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-purple-400">
+        <p id="dayError" class="text-red-500 text-sm hidden">Le jour est obligatoire.</p>
+
+        <label class="block mt-3 text-gray-700">Heure :</label>
+        <input type="time" name="time" id="time" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-purple-400">
+        <p id="timeError" class="text-red-500 text-sm hidden">L'heure est obligatoire.</p>
+
+        <label class="block mt-3 text-gray-700">Matière :</label>
+        <input type="text" name="subject" id="subject" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-purple-400">
+        <p id="subjectError" class="text-red-500 text-sm hidden">La matière est obligatoire.</p>
+
+        <button type="submit" class="mt-4 w-full bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700">
+            Ajouter
+        </button>
+    </form>
+</div>
+
+<script>
+document.getElementById("scheduleForm").addEventListener("submit", function(event) {
+    let valid = true;
+
+    let class_id = document.getElementById("class_id");
+    let day = document.getElementById("day");
+    let time = document.getElementById("time");
+    let subject = document.getElementById("subject");
+
+    if (class_id.value.trim() === "") {
+        valid = false;
+        document.getElementById("classError").classList.remove("hidden");
+    } else {
+        document.getElementById("classError").classList.add("hidden");
+    }
+
+    if (day.value.trim() === "") {
+        valid = false;
+        document.getElementById("dayError").classList.remove("hidden");
+    } else {
+        document.getElementById("dayError").classList.add("hidden");
+    }
+
+    if (time.value.trim() === "") {
+        valid = false;
+        document.getElementById("timeError").classList.remove("hidden");
+    } else {
+        document.getElementById("timeError").classList.add("hidden");
+    }
+
+    if (subject.value.trim() === "") {
+        valid = false;
+        document.getElementById("subjectError").classList.remove("hidden");
+    } else {
+        document.getElementById("subjectError").classList.add("hidden");
+    }
+
+    if (!valid) {
+        event.preventDefault();
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EduConnect{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    
+    <!-- Barre de navigation -->
+    <nav class="bg-blue-600 text-white py-4 shadow-md">
+        <div class="container mx-auto flex justify-between px-4">
+            <a href="{% url 'dashboard' %}" class="text-xl font-bold">EduConnect</a>
+            <div>
+                <a href="{% url 'view_classes' %}" class="px-3">Classes</a>
+                <a href="{% url 'view_schedules' %}" class="px-3">Emplois du Temps</a>
+                <a href="{% url 'view_notes' %}" class="px-3">Notes</a>
+                <a href="{% url 'view_bulletins' %}" class="px-3">Bulletins</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container mx-auto py-8 px-4">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

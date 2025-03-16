@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Emplois du Temps{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold text-purple-600 mb-4">Emplois du Temps</h1>
+<table class="w-full bg-white rounded-xl shadow-lg">
+    <thead class="bg-purple-600 text-white">
+        <tr>
+            <th class="p-3">Classe</th>
+            <th class="p-3">Jour</th>
+            <th class="p-3">Heure</th>
+            <th class="p-3">Matière</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emploi in emplois %}
+        <tr class="border-b">
+            <td class="p-3">{{ emploi.class_id }}</td>
+            <td class="p-3">{{ emploi.day }}</td>
+            <td class="p-3">{{ emploi.time }}</td>
+            <td class="p-3">{{ emploi.subject }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
